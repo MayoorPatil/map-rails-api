@@ -18,7 +18,8 @@ class KidsController < ProtectedController
 
   # POST /kids
   def create
-    @kid = Kid.new(kid_params)
+    # @kid = Kid.new(kid_params)
+    @kid = current_user.kids.build(kid_params)
 
     if @kid.save
       render json: @kid, status: :created, location: @kid
@@ -45,11 +46,12 @@ class KidsController < ProtectedController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_kid
-    @kid = Kid.find(params[:id])
+    # @kid = Kid.find(params[:id])
+    @kid = current_user.kids.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def kid_params
-    params.require(:kid).permit(:first_name, :last_name, :image_url)
+    params.require(:kid).permit(:first_name, :last_name, :image_url, :user_id)
   end
 end
