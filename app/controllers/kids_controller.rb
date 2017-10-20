@@ -6,7 +6,7 @@ class KidsController < ProtectedController
 
   # GET /kids
   def index
-    @kids = Kid.all
+    @kids = current_user.kids.all
 
     render json: @kids
   end
