@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :update, :destroy]
+  before_action :set_book, only: %i[show update destroy]
 
   # GET /books
   def index
-    @books = Book.all
+    @books = Book.all.where('kid_id =' + book_params[:kid_id])
 
     render json: @books
   end
@@ -35,17 +37,19 @@ class BooksController < ApplicationController
 
   # DELETE /books/1
   def destroy
-    @book.destroy
+    @book.destroy_all
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def book_params
-      params.require(:book).permit(:title, :author, :content, :image_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    # @book = Book.find(params[:id])
+    @book = Book.where('id = ? AND kid_id = ?', params[:id], book_params[:kid_id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def book_params
+    params.require(:book).permit(:title, :author, :content, :image_url, :kid_id)
+  end
 end
