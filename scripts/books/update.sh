@@ -9,7 +9,8 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
     "book": {
-      "image_url": "'"${LOC}"'"
+      "image_url": "'"${LOC}"'",
+      "kid_id": "'"${KID_ID}"'"
     }
   }'
 
