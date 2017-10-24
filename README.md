@@ -11,6 +11,10 @@ Rails[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44
 -   This application is built using `Ruby on Rails`
 -   This is my first project using ruby on rails so any feedback is appreciated
 
+In the near future plan is to include support for the following:
+
+-   Make the books API generic independent of a child 
+
 If you have any feedback and/or suggestions. Please connect and share
 
 ## Contact me
