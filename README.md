@@ -25,8 +25,8 @@ The following tools and technologies where used to build this application
 3.  Postgres SQL database
 3.  ATOM editor
 4.  This API application is deployed on Heroku for public consumption
-    a. Here is the link to the [`Backend Repo`](https://github.com/MayoorPatil/map-rails-api)
-    b. Here is the link to the [`Backend Endpoint`](https://map-rails-api.herokuapp.com/)
+    -   Here is the link to the [`Backend Repo`](https://github.com/MayoorPatil/map-rails-api)
+    -   Here is the link to the [`Backend Endpoint`](https://map-rails-api.herokuapp.com/)
 
 ## Development Process
 
@@ -35,9 +35,9 @@ Here is how I approached the development of this application
 1.  Had the requirements broken down into user stories
 2.  Based on the stories I spent some time designing the `Entity Relationship Diagram - ERD` and had the high level ERD created
 3.  Then I moved on to creating backend resource one at a time and tested it out writing `CRUL Scripts`
-  1. Created one CRUD action at one time
-4.  Once the CRUL Script testig passed I intergrated the resource with the front-end application `Favorite Books`
-  1. Ensured that the front-end application was able to consume the APIs using `AJAX` calls
+    -   Created one CRUD action at one time
+4.  Once the CRUL Script testing passed I intergrated the resource with the front-end application `Favorite Books`
+    -   Ensured that the front-end application was able to consume the APIs using `AJAX` calls
 5.  With every little change I made i unit tested all along to minimize defects and fixes. This helped a lot as I was able to identify minor defects and fix along the way.
 6.  All along I also ensured every feature was committed and pushed to the GIT repository. This was specifically helpful since I knew exactly what had changed with each feature and did not have to struggle and go through a ton of code to fix or implement any missing functionality
 
