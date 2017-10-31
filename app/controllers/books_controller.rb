@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class BooksController < ApplicationController
+class BooksController < ProtectedController
   before_action :set_book, only: %i[show update destroy]
 
-  # GET /books
+  # GET /books - returns all books that belong to a child
   def index
-    @books = Book.all.where('kid_id =' + book_params[:kid_id])
+    @books = current_user.kids.find(book_params[:kid_id]).books.all
 
     render json: @books
   end
@@ -15,9 +15,9 @@ class BooksController < ApplicationController
     render json: @book
   end
 
-  # POST /books
+  # POST /books - create book that will belong to a child
   def create
-    @book = Book.new(book_params)
+    @book = current_user.kids.find(book_params[:kid_id]).books.build(book_params)
 
     if @book.save
       render json: @book, status: :created, location: @book
@@ -26,7 +26,7 @@ class BooksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /books/1
+  # PATCH/PUT /books/1 - update book that belongs with a child
   def update
     if @book.update(book_params)
       render json: @book
@@ -35,17 +35,16 @@ class BooksController < ApplicationController
     end
   end
 
-  # DELETE /books/1
+  # DELETE /books/1 - delete book that belongs to a child
   def destroy
-    @book.destroy_all
+    @book.destroy
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  # Set book that belongs to a child that is identified with kid_id
   def set_book
-    # @book = Book.find(params[:id])
-    @book = Book.where('id = ? AND kid_id = ?', params[:id], book_params[:kid_id])
+    @book = current_user.kids.find(book_params[:kid_id]).books.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
